@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelCraft AI - Mountain & Outdoor Video Studio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        dark: {
+                            900: '#0d1117',
+                            800: '#161b22',
+                            700: '#21262d',
+                            600: '#30363d'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#090d13] text-[#e6edf3] font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="border-b border-dark-600 bg-dark-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-mountain text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                        ReelCraft <span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 border border-brand-500/30">AI Studio</span>
+                    </h1>
+                    <p class="text-xs text-gray-400">Mountain & Outdoor Storyboard Engine</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="https://rutestrip.web.id" target="_blank" class="text-xs text-gray-400 hover:text-white px-3 py-1.5 rounded-lg border border-dark-600 hover:border-dark-700 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-compass text-brand-400"></i> RuteStrip Ecosystem
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- Left Column: Control Studio -->
+        <section class="lg:col-span-5 flex flex-col gap-6">
+            <div class="bg-dark-800 rounded-2xl border border-dark-600 p-6 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex items-center justify-between mb-5">
+                    <h2 class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-brand-400"></i> Parameter Konten
+                    </h2>
+                    <span class="text-xs text-gray-400">TikTok • Reels • Shorts</span>
+                </div>
+
+                <form id="generateForm" class="space-y-5">
+                    <!-- Destinasi Input & Quick Badges -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+                            Nama Gunung / Destinasi <span class="text-red-400">*</span>
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            <input type="text" id="destInput" required placeholder="Contoh: Gunung Sumbing, Merbabu, Prau..." 
+                                   class="w-full bg-dark-900 border border-dark-600 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+                        </div>
+                        <!-- Quick tags -->
+                        <div class="flex flex-wrap gap-1.5 mt-2.5" id="quickTags">
+                            <span class="cursor-pointer text-[11px] bg-dark-700 hover:bg-brand-500/20 hover:text-brand-400 text-gray-300 px-2.5 py-1 rounded-lg border border-dark-600 transition" data-dest="Gunung Sumbing">🏔️ Sumbing</span>
+                            <span class="cursor-pointer text-[11px] bg-dark-700 hover:bg-brand-500/20 hover:text-brand-400 text-gray-300 px-2.5 py-1 rounded-lg border border-dark-600 transition" data-dest="Gunung Merbabu">🌿 Merbabu</span>
+                            <span class="cursor-pointer text-[11px] bg-dark-700 hover:bg-brand-500/20 hover:text-brand-400 text-gray-300 px-2.5 py-1 rounded-lg border border-dark-600 transition" data-dest="Gunung Prau">🌅 Prau</span>
+                            <span class="cursor-pointer text-[11px] bg-dark-700 hover:bg-brand-500/20 hover:text-brand-400 text-gray-300 px-2.5 py-1 rounded-lg border border-dark-600 transition" data-dest="Gunung Semeru">🌋 Semeru</span>
+                            <span class="cursor-pointer text-[11px] bg-dark-700 hover:bg-brand-500/20 hover:text-brand-400 text-gray-300 px-2.5 py-1 rounded-lg border border-dark-600 transition" data-dest="Gunung Rinjani">🏝️ Rinjani</span>
+                        </div>
+                    </div>
+
+                    <!-- Durasi Video -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Durasi Video</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="duration-card active flex items-center justify-center gap-2 p-3 rounded-xl border border-brand-500 bg-brand-500/10 text-white text-xs font-semibold cursor-pointer transition">
+                                <input type="radio" name="duration" value="30" checked class="hidden">
+                                <i class="fa-solid fa-bolt text-brand-400"></i> 30 Detik (Fast Hook)
+                            </label>
+                            <label class="duration-card flex items-center justify-center gap-2 p-3 rounded-xl border border-dark-600 bg-dark-900 text-gray-400 text-xs font-semibold cursor-pointer hover:border-dark-700 transition">
+                                <input type="radio" name="duration" value="60" class="hidden">
+                                <i class="fa-solid fa-film text-purple-400"></i> 60 Detik (Story Deep)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tone Narasi -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Gaya Narasi & Mood (Tone)</label>
+                        <div class="relative">
+                            <select id="toneSelect" class="w-full bg-dark-900 border border-dark-600 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition appearance-none cursor-pointer">
+                                <option value="cinematic">🌲 Sinematik Dokumenter (Epik, Bijak & Tenang)</option>
+                                <option value="viral_genz">⚡ High-Energy & Viral Gen-Z (Hype, Cepat & Seru)</option>
+                                <option value="survival">⚠️ Survival & Extreme Alert (Misterius & Edukatif)</option>
+                                <option value="chill">☕ Chill & Storytelling Santai (Hangat & Puitis)</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                        </div>
+                    </div>
+
+                    <!-- Voiceover Actor -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Pilihan Suara AI (Voice Actor)</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="voice-card active flex items-center gap-3 p-3 rounded-xl border border-brand-500 bg-brand-500/10 text-white cursor-pointer transition">
+                                <input type="radio" name="voice" value="id_ardi" checked class="hidden">
+                                <div class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-microphone-lines"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold">Mas Ardi</div>
+                                    <div class="text-[10px] text-gray-400">Suara Berat & Naratif</div>
+                                </div>
+                            </label>
+                            <label class="voice-card flex items-center gap-3 p-3 rounded-xl border border-dark-600 bg-dark-900 text-gray-400 cursor-pointer hover:border-dark-700 transition">
+                                <input type="radio" name="voice" value="id_gadis" class="hidden">
+                                <div class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-microphone"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-gray-200">Mbak Gadis</div>
+                                    <div class="text-[10px] text-gray-400">Jernih & Dinamis</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="btnGenerate" class="w-full bg-gradient-to-r from-brand-600 to-emerald-500 hover:from-brand-500 hover:to-emerald-400 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 text-sm transition transform active:scale-[0.99]">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Generate Storyboard & Voiceover</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Right Column: Studio Output & Interactive Tabs -->
+        <section class="lg:col-span-7 flex flex-col gap-6">
+
+            <!-- Placeholder State -->
+            <div id="emptyState" class="bg-dark-800 rounded-2xl border border-dark-600 p-12 text-center flex flex-col items-center justify-center min-h-[500px]">
+                <div class="w-16 h-16 rounded-2xl bg-dark-700 text-gray-400 flex items-center justify-center text-2xl mb-4 border border-dark-600 shadow-inner">
+                    <i class="fa-solid fa-clapperboard text-brand-400"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Studio Siap Digunakan</h3>
+                <p class="text-sm text-gray-400 max-w-sm">Pilih nama destinasi atau gunung di panel kiri, lalu klik Generate untuk memproduksi naskah, shot list B-roll, dan audio voiceover AI.</p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden bg-dark-800 rounded-2xl border border-dark-600 p-12 text-center flex flex-col items-center justify-center min-h-[500px]">
+                <div class="w-14 h-14 border-4 border-dark-600 border-t-brand-500 rounded-full animate-spin mb-4"></div>
+                <h3 class="text-base font-bold text-white mb-1" id="loadingText">Menyusun Naskah & Hook AI...</h3>
+                <p class="text-xs text-gray-400">Mensintesis intonasi suara narator natural dan timecode B-roll...</p>
+            </div>
+
+            <!-- Result State -->
+            <div id="resultState" class="hidden space-y-6">
+
+                <!-- Voiceover Audio Player Bar -->
+                <div class="bg-gradient-to-r from-dark-800 to-dark-700 rounded-2xl border border-dark-600 p-5 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 border border-brand-500/30 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider font-semibold">AI Voiceover Audio</div>
+                            <div class="text-sm font-bold text-white" id="audioTitle">Narasi Gunung Sumbing (30s)</div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Controls & Download -->
+                    <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                        <audio id="audioPlayer" controls class="h-10 rounded-lg max-w-[220px] bg-dark-900"></audio>
+                        <a id="btnDownloadMp3" href="#" download class="px-3.5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-md transition">
+                            <i class="fa-solid fa-download"></i> MP3
+                        </a>
+                        <a id="btnDownloadSrt" href="#" download class="px-3.5 py-2 bg-dark-600 hover:bg-dark-500 text-gray-200 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-dark-600 transition">
+                            <i class="fa-solid fa-closed-captioning"></i> SRT
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tabs Card -->
+                <div class="bg-dark-800 rounded-2xl border border-dark-600 shadow-xl overflow-hidden">
+                    
+                    <!-- Tab Headers -->
+                    <div class="flex border-b border-dark-600 bg-dark-900/50 px-4 pt-3 gap-2 overflow-x-auto">
+                        <button class="tab-btn active px-4 py-2.5 text-xs font-bold rounded-t-xl border-b-2 border-brand-500 text-brand-400 flex items-center gap-2 transition" data-tab="tab-storyboard">
+                            <i class="fa-solid fa-table-list"></i> Storyboard & B-Roll
+                        </button>
+                        <button class="tab-btn px-4 py-2.5 text-xs font-bold rounded-t-xl border-b-2 border-transparent text-gray-400 hover:text-gray-200 flex items-center gap-2 transition" data-tab="tab-script">
+                            <i class="fa-solid fa-file-lines"></i> Naskah Voiceover
+                        </button>
+                        <button class="tab-btn px-4 py-2.5 text-xs font-bold rounded-t-xl border-b-2 border-transparent text-gray-400 hover:text-gray-200 flex items-center gap-2 transition" data-tab="tab-caption">
+                            <i class="fa-brands fa-instagram"></i> Caption & Hashtag
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="p-6">
+
+                        <!-- Tab 1: Storyboard -->
+                        <div id="tab-storyboard" class="tab-content space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="text-xs font-semibold text-gray-400">
+                                    <i class="fa-solid fa-camera-retro text-brand-400 mr-1"></i> Panduan Pengambilan Video per Detik
+                                </div>
+                                <span class="text-[11px] px-2.5 py-1 rounded-md bg-dark-700 text-gray-300 border border-dark-600 font-mono" id="destBadge">Sumbing • 3.371 mdpl</span>
+                            </div>
+
+                            <div class="space-y-3" id="scenesContainer">
+                                <!-- Dynamic Scenes Injected Here -->
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Full Script -->
+                        <div id="tab-script" class="tab-content hidden space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="text-xs font-semibold text-gray-400">Naskah Lengkap Narator</div>
+                                <button id="btnCopyScript" class="text-xs text-brand-400 hover:text-brand-300 px-3 py-1 rounded-lg bg-dark-700 border border-dark-600 flex items-center gap-1.5 transition">
+                                    <i class="fa-solid fa-copy"></i> Salin Naskah
+                                </button>
+                            </div>
+                            <div class="p-4 bg-dark-900 rounded-xl border border-dark-600 text-sm text-gray-200 leading-relaxed font-sans" id="fullScriptBox"></div>
+                        </div>
+
+                        <!-- Tab 3: Caption & Hashtags -->
+                        <div id="tab-caption" class="tab-content hidden space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="text-xs font-semibold text-gray-400">Draft Caption Instagram / TikTok / YouTube Shorts</div>
+                                <button id="btnCopyCaption" class="text-xs text-brand-400 hover:text-brand-300 px-3 py-1 rounded-lg bg-dark-700 border border-dark-600 flex items-center gap-1.5 transition">
+                                    <i class="fa-solid fa-copy"></i> Salin Caption
+                                </button>
+                            </div>
+                            <pre class="p-4 bg-dark-900 rounded-xl border border-dark-600 text-xs text-gray-300 whitespace-pre-wrap leading-relaxed font-sans" id="captionBox"></pre>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-dark-600 bg-dark-900/60 py-6 mt-12 text-center text-xs text-gray-500">
+        <p>ReelCraft AI Studio • Dikembangkan untuk Kreator & Pendaki Nusantara</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
